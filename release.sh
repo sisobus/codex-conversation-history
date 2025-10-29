@@ -17,7 +17,8 @@ NC='\033[0m' # No Color
 
 # Configuration
 HOMEBREW_TAP_PATH="../homebrew-tap"
-FORMULA_FILE="$HOMEBREW_TAP_PATH/Formula/cohistory.rb"
+FORMULA_RELATIVE_PATH="Formula/cohistory.rb"
+FORMULA_FILE="$HOMEBREW_TAP_PATH/$FORMULA_RELATIVE_PATH"
 SCRIPT_NAME="cohistory.py"
 REPO_NAME="codex-conversation-history"
 GITHUB_USER="sisobus"
@@ -143,14 +144,14 @@ print_step "Updating homebrew-tap formula..."
 
 cd "$HOMEBREW_TAP_PATH"
 
-sed -i '' "s|url \"https://github.com/$GITHUB_USER/$REPO_NAME/archive/refs/tags/v.*\\.tar\\.gz\"|url \"$TARBALL_URL\"|" "$FORMULA_FILE"
-sed -i '' "s|sha256 \"[a-f0-9]*\"|sha256 \"$SHA256\"|" "$FORMULA_FILE"
-sed -i '' "s|version \".*\"|version \"$VERSION\"|" "$FORMULA_FILE"
+sed -i '' "s|url \"https://github.com/$GITHUB_USER/$REPO_NAME/archive/refs/tags/v.*\\.tar\\.gz\"|url \"$TARBALL_URL\"|" "$FORMULA_RELATIVE_PATH"
+sed -i '' "s|sha256 \"[a-f0-9]*\"|sha256 \"$SHA256\"|" "$FORMULA_RELATIVE_PATH"
+sed -i '' "s|version \".*\"|version \"$VERSION\"|" "$FORMULA_RELATIVE_PATH"
 
 print_success "Formula updated"
 
 print_step "Committing homebrew-tap changes..."
-git add "$FORMULA_FILE"
+git add "$FORMULA_RELATIVE_PATH"
 git commit -m "Update cohistory to v$VERSION
 
 $COMMIT_MESSAGE"
