@@ -30,7 +30,7 @@ class Colors:
 
 
 CODEX_DIR = Path.home() / ".codex" / "sessions"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 class InteractiveMenu:
